@@ -5,25 +5,38 @@ import googleLogo from "/icons/google.png"
 
 function Signup() {
 
-  const [firstName, setFirstName] = useState()
-  const [userName, setUserName] = useState()
-  const [userEmail,setUserEmail]=useState()
-  const [userPassword, setUserPassword] = useState()
+  const [firstName, setFirstName] = useState("")
+  const [userName, setUserName] = useState("")
+  const [userEmail,setUserEmail]=useState("")
+  const [userPassword, setUserPassword] = useState("")
 
   const navigate = useNavigate();
 
   function createAccount(){
-    axios
-    .post("https://66ea79ae55ad32cda4790255.mockapi.io/user",{
-      name:firstName,
-      username:userName,
-      email:userEmail,
-      password:userPassword
-    })
-    .then(function(response){
-      navigate("/login")
-      console.log(response)
-    })
+    if(!firstName || !userName || !userEmail || !userPassword){
+      window.alert("please enter correct value")
+    }
+    else if(userPassword.length < 8)
+    {
+      window.alert("password should more then 8 carachter")
+    }
+    else if(!userEmail.includes("@")){
+      window.alert("email should contain @")
+    }
+    else{
+      axios
+      .post("https://66ea79ae55ad32cda4790255.mockapi.io/user",{
+        name:firstName,
+        username:userName,
+        email:userEmail,
+        password:userPassword
+      })
+      .then(function(response){
+        navigate("/login")
+        console.log(response)
+      })
+    }
+
   }
   return (
     <div className="w-[100vw] h-[100vh] bg-gray-100 flex justify-center items-center ">
