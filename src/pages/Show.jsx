@@ -177,7 +177,7 @@ function Show() {
 
                             </>
                         ) : (
-                            <p>Loading video details...</p>
+                            <p>Loading video</p>
                         )}
                     </div>
                 </div>
